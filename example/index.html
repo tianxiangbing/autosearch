@@ -22,7 +22,7 @@
 	<script>
 		 var input = $('.autosearch2');
 		 var autosearch = new AutoSearch();
-		 autosearch.init({input:input ,autoShow:true,data:function(callback){
+		 autosearch.init({input:input ,autoShow:false,data:function(callback){
 				$.get('data.txt',{key:input.val()},function(result){
 		 		callback(result);
 		 		},'json');
@@ -36,7 +36,7 @@
 	$.get('data.txt',function(result){
 		 var input = $('.autosearch3');
 		 var autosearch = new AutoSearch();
-		 autosearch.init({input:input,autoShow:true,data:result,mutil:true
+		 autosearch.init({input:input,autoShow:false,data:result,mutil:true
 		 	});
 	},'json')
 	</script>

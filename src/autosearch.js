@@ -56,7 +56,10 @@
 				}, 25);
 				_this.settings.focusCallback && _this.settings.focusCallback.call(_this, _this.input);
 			}).on('keyup', function(e) {
-				_this.search();
+				if (input.data('old') != input.val()) {
+					_this.search();
+					input.data('old', input.val());
+				}
 				//console.log(e.keyCode)
 			}).on('blur', function() {
 				if (_this.timer) {
