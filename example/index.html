@@ -6,14 +6,14 @@
 	<link rel="stylesheet" href="../src/autosearch.css">
 </head>
 <body>
-	<input type="text"  class="autosearch">
+	<input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
 	<script src="../src/jquery-1.11.2.js"></script>
 	<script src="../src/autosearch.js"></script>
 	<script>
 	$.get('data.txt',function(result){
 		 var input = $('.autosearch');
 		 var autosearch = new AutoSearch();
-		 autosearch.init({input:input,autoShow:true,data:result});
+		 autosearch.init({input:input,autoShow:true,data:result,valueObj:'#hd_id',valueName:"id"});
 	},'json')
 	</script>
 
