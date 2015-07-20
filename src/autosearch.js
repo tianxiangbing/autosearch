@@ -2,7 +2,7 @@
  * Created with Sublime Text 2.
  * license: http://www.lovewebgames.com/jsmodule/index.html
  * User: 田想兵
- * Date: 2015-07-08
+ * Date: 2015-07-20
  * Time: 15:10:00
  * Contact: 55342775@qq.com
  */
