@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>autosearch</title>
+	<link rel="stylesheet" href="../src/autosearch.css">
+</head>
+<body>
+	<input type="text"  class="autosearch">
+	<script src="../src/jquery-1.11.2.js"></script>
+	<script src="../src/autosearch.js"></script>
+	<script>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:true,data:result});
+	},'json')
+	</script>
+
+	<!-- ajax请求 -->
+	<input type="text"  class="autosearch2">
+	<script>
+		 var input = $('.autosearch2');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input ,autoShow:true,data:function(callback){
+				$.get('data.txt',{key:input.val()},function(result){
+		 		callback(result);
+		 		},'json');
+	 		}
+	 	});
+	</script>
+
+</body>
+</html>
