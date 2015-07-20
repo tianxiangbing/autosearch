@@ -32,9 +32,6 @@
 			this.target = $(this.settings.target || this.settings.input); //显示框
 			this.filterColumn = this.settings.filterColumn || ['name'];
 			this.column = this.settings.column || ['name'];
-			this.ajaxData = $.extend({
-				key: this.input.val()
-			}, this.settings.ajaxData);
 			this.timer = null;
 			this.content = null;
 			this.createContent();
@@ -69,7 +66,11 @@
 			});
 			this.content.on('click', '.item', function() {
 				var data = $(this).data('data');
-				_this.valueObj.val(data[_this.valueName]);
+				if(_this.settings.mutil ==true){
+					_this.valueObj.val(_this.valueObj.val()+data[_this.valueName]+',');
+				}else{
+					_this.valueObj.val(data[_this.valueName]);
+				}
 				_this.settings.callback && _this.settings.callback.call(_this, data);
 				_this.hide();
 			});
@@ -104,7 +105,7 @@
 		},
 		search: function() {
 			var _this = this;
-			var value = _this.input.val();
+			var value = _this.input.val().split(',').pop();
 			if (value >= _this.min || _this.settings.autoShow) {
 				if (typeof _this.data === "function") {
 					//ajax
@@ -145,7 +146,7 @@
 		},
 		filter: function(data) {
 			var _this = this;
-			var value = _this.input.val();
+			var value = _this.input.val().split(',').pop();
 			var newData = [];
 			for (var i = 0, l = data.length; i < l; i++) {
 				var item = data[i];

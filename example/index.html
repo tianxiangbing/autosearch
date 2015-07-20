@@ -30,5 +30,16 @@
 	 	});
 	</script>
 
+	<!-- 多个 -->
+	<input type="text"  class="autosearch3">
+	<script>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch3');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:true,data:result,mutil:true
+		 	});
+	},'json')
+	</script>
+
 </body>
 </html>
