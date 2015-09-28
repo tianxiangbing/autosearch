@@ -119,6 +119,7 @@
 							}, 50)
 						}
 				}
+			}).on('keydown',function(){
 				return false;
 			});
 			this.content.on('click', '.item', function() {
