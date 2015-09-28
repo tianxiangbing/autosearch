@@ -119,8 +119,8 @@
 							}, 50)
 						}
 				}
-			}).on('keydown',function(){
-				return false;
+			}).on('keydown',function(e){
+				e.preventDefault();
 			});
 			this.content.on('click', '.item', function() {
 				var data = $(this).data('data');
