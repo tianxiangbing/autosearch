@@ -119,6 +119,7 @@
 							}, 50)
 						}
 				}
+				return false;
 			});
 			this.content.on('click', '.item', function() {
 				var data = $(this).data('data');
