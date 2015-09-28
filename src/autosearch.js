@@ -102,7 +102,6 @@
 							if(current.size()){
 								var pos = $('.item.current', _this.content).position();
 								var ch = current.outerHeight();
-								console.log(pos, ch,$(_this.content).height())
 								var st = $(_this.content).scrollTop();
 								if (pos.top <=0) {
 									st -= ch;
