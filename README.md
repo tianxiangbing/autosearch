@@ -58,6 +58,11 @@
 	显示的列，默认为['name']，如果想定义显示项，可以配置回调方法format:function(item)来返回显示内容
 ##mutil:[bool]
 	选多个，默认为false
+##min:`1`
+	最少几个字符开始搜索
+##valueName:`name`
+	要显示在列表里的值.
+
 #回调方法
 ##callback :function(data)
 	选中的回调，data为当前选中的数据项.可以用于扩展选中后的显示效果
