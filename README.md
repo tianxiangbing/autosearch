@@ -72,3 +72,5 @@
 	离开焦点
 ##showCallback:function(input,content)
 	显示后的回调
+##resetCallback:function(input)
+	this,没选择的重置回调

@@ -73,7 +73,7 @@
 				}
 				setTimeout(function() {
 					_this.hide();
-					if (_this.ischanged && !this.settings.mutil) {
+					if (_this.ischanged && !_this.settings.mutil) {
 						_this.input.val('');
 						_this.settings.resetCallback && _this.settings.resetCallback.call(_this, _this.input);
 					}
