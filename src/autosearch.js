@@ -142,12 +142,16 @@
 					_this.input.val(_this.mutilTextArr.join(',') + ',');
 					_this.valueObj.val(_this.mutilValueArr.join(',') + ',');
 					_this.input.attr('data-value', _this.input.attr('data-value'));
-					_this.input.attr('data-text',_this.mutilTextArr.join(',') + ',');
+					_this.input.attr('data-text', _this.mutilTextArr.join(',') + ',');
 				} else {
 					_this.input.val(text);
 					_this.valueObj.val(data[_this.valueName]);
 					_this.input.attr('data-value', data[_this.valueName]);
-					_this.input.attr('data-text',text);
+					if (this.settings.valueObj) {
+						_this.input.attr('data-text', text);
+					} else {
+						_this.input.attr('data-text', data[_this.valueName]);
+					}
 				}
 				_this.settings.callback && _this.settings.callback.call(_this, data);
 				_this.hide();
