@@ -147,7 +147,7 @@
 					_this.input.val(text);
 					_this.valueObj.val(data[_this.valueName]);
 					_this.input.attr('data-value', data[_this.valueName]);
-					if (this.settings.valueObj) {
+					if (_this.settings.valueObj) {
 						_this.input.attr('data-text', text);
 					} else {
 						_this.input.attr('data-text', data[_this.valueName]);
