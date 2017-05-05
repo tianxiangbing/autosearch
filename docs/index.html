@@ -12,11 +12,25 @@
 	</style>
 </head>
 <body>
-<p>github地址:<a href="https://github.com/tianxiangbing/autosearch">https://github.com/tianxiangbing/autosearch</a> </p>
-<p>demo地址:<a href="http://www.lovewebgames.com/jsmodule/autosearch.html">http://www.lovewebgames.com/jsmodule/autosearch.html</a> </p>
-	ajax请求:<input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
+	
 	<script src="jquery-1.11.2.js"></script>
 	<script src="autosearch.js"></script>
+<p>github地址:<a href="https://github.com/tianxiangbing/autosearch">https://github.com/tianxiangbing/autosearch</a> </p>
+<p>demo地址:<a href="http://www.lovewebgames.com/jsmodule/autosearch.html">http://www.lovewebgames.com/jsmodule/autosearch.html</a> </p>
+	静态数据：<input type="text"  class="autosearch0"><input type="hidden" name="hd_id0" id="hd_id0">
+	<script>
+		 var input = $('.autosearch0');
+		 var autosearch = new AutoSearch();
+		 var data = [{adminid:1,adminname:"javascript"},{adminid:2,adminname:"java"}];
+		 autosearch.init({input:input,autoShow:true,data:data,valueObj:'#hd_id0',filterColumn:['adminname'],column:['adminname'],valueName:"adminid"});
+	</script>
+	<pre>
+		 var input = $('.autosearch0');
+		 var autosearch = new AutoSearch();
+		 var data = [{adminid:1,adminname:"javascript"},{adminid:2,adminname:"java"}];
+		 autosearch.init({input:input,autoShow:true,data:data,valueObj:'#hd_id0',filterColumn:['adminname'],column:['adminname'],valueName:"adminid"});
+	</pre>
+	ajax请求:<input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
 	<script>
 	$.get('data.txt',function(result){
 		 var input = $('.autosearch');
