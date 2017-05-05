@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>autosearch</title>
+	<link rel="stylesheet" href="autosearch.css">
+	<style>
+		pre{
+			background-color:#cecece;
+			padding:10px;
+		}
+	</style>
+</head>
+<body>
+<p>github地址:<a href="https://github.com/tianxiangbing/autosearch">https://github.com/tianxiangbing/autosearch</a> </p>
+<p>demo地址:<a href="http://www.lovewebgames.com/jsmodule/autosearch.html">http://www.lovewebgames.com/jsmodule/autosearch.html</a> </p>
+	ajax请求:<input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
+	<script src="jquery-1.11.2.js"></script>
+	<script src="autosearch.js"></script>
+	<script>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:true,data:result,valueObj:'#hd_id',valueName:"id"});
+	},'json')
+	</script>
+	<pre>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:true,data:result,valueObj:'#hd_id',valueName:"id"});
+	},'json')
+	</pre>
+	<!-- ajax请求 -->
+	ajax请求:<input type="text"  class="autosearch2">
+	<script>
+		 var input = $('.autosearch2');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input ,autoShow:false,data:function(callback){
+				$.get('data.txt',{key:input.val()},function(result){
+		 		callback(result);
+		 		},'json');
+	 		}
+	 	});
+	</script>
+<pre>
+		 var input = $('.autosearch2');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input ,autoShow:false,data:function(callback){
+				$.get('data.txt',{key:input.val()},function(result){
+		 		callback(result);
+		 		},'json');
+	 		}
+	 	});
+		 </pre>
+	<!-- 多个 -->
+	多选：<input type="text"  class="autosearch3">
+	<script>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch3');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:false,data:result,mutil:true
+		 	});
+	},'json')
+	</script>
+	<pre>
+	$.get('data.txt',function(result){
+		 var input = $('.autosearch3');
+		 var autosearch = new AutoSearch();
+		 autosearch.init({input:input,autoShow:false,data:result,mutil:true
+		 	});
+	},'json')
+	</pre>
+</body>
+</html>
