@@ -24,7 +24,8 @@
 			this.settings = $.extend({
 				mutil: false,
 				autoHide:true,
-				isdel:false
+				isdel:false,
+				allDelText:'清除全部记录'
 			}, settings);
 			this.input = $(this.settings.input);
 			this.min = this.settings.min || 1;
@@ -210,7 +211,11 @@
 				} else {
 					var data = _this.filter(_this.data);
 					_this.format(data);
-					_this.show();
+					if(data.length){
+						_this.show();
+					}else{
+						_this.hide()
+					}
 				}
 			} else {
 				_this.hide();
@@ -245,6 +250,14 @@
 					row.data('data', item)
 					this.content.append(row);
 				};
+				if(this.settings.isdel){
+					var delrow = $('<div class="item">'+this.settings.allDelText+'</div>');
+					delrow.click(function(){
+						$(this).siblings('.item').find('.ats_del').trigger('click');
+						return false;
+					})
+					this.content.append(delrow);
+				}
 			}
 		},
 		filter: function(data) {
