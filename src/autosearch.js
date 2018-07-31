@@ -1,6 +1,7 @@
 /*
  * Created with Sublime Text 2.
  * license: http://www.lovewebgames.com/jsmodule/index.html
+ * github:	https://github.com/tianxiangbing/autosearch
  * User: 田想兵
  * Date: 2015-07-20
  * Time: 15:10:00
@@ -9,11 +10,8 @@
 
 ;
 (function(root, factory) {
-	//amd
-	if (typeof define === 'function' && define.amd) {
-		define(['$'], factory);
-	} else if (typeof exports === 'object') { //umd
-		module.exports = factory();
+	if (typeof exports === 'object') { //umd
+		module.exports =factory($);
 	} else {
 		root.AutoSearch = factory(window.Zepto || window.jQuery || $);
 	}
@@ -24,7 +22,9 @@
 			var rnd = Math.random().toString().replace('.', '');
 			this.id = 'autosearch_' + rnd;
 			this.settings = $.extend({
-				mutil: false
+				mutil: false,
+				autoHide:true,
+				isdel:false
 			}, settings);
 			this.input = $(this.settings.input);
 			this.min = this.settings.min || 1;
@@ -67,19 +67,23 @@
 				}
 				//console.log(e.keyCode)
 			}).on('blur', function() {
-				if (_this.timer) {
-					clearInterval(_this.timer);
-				}
-				var input = $(this);
-				setTimeout(function() {
-					_this.hide();
-					if (input.attr('data-text') != input.val() && !_this.settings.mutil) {
-						_this.input.val('');
-						_this.settings.resetCallback && _this.settings.resetCallback.call(_this, _this.input);
+				if(_this.settings.autoHide){
+					if (_this.timer) {
+						clearInterval(_this.timer);
 					}
-				}, 500)
+					var input = $(this);
+					setTimeout(function() {
+						_this.hide();
+						if (input.attr('data-text') != input.val() && !_this.settings.mutil) {
+							_this.input.val('');
+							_this.settings.resetCallback && _this.settings.resetCallback.call(_this, _this.input);
+						}
+					}, 500)
+				}
 				_this.settings.blurCallback && _this.settings.blurCallback.call(_this, _this.input);
 			}).on('keyup', function(e) {
+				e.preventDefault();
+				e.stopPropagation();
 				switch (e.keyCode) {
 					case 40:
 						{
@@ -98,8 +102,8 @@
 									$(_this.content).scrollTop(st);
 								}
 							}
+							break;
 						}
-						break;
 					case 38:
 						{
 							//up
@@ -117,8 +121,8 @@
 									$(_this.content).scrollTop(Math.max(st, 0));
 								}
 							}
+							break;
 						}
-						break;
 					case 13:
 						{
 							//enter
@@ -126,6 +130,8 @@
 							setTimeout(function() {
 								_this.hide();
 							}, 50)
+							_this.settings.enterCallback&&_this.settings.enterCallback.call(_this,this);
+							break;
 						}
 				}
 			}).on('keydown', function(e) {
@@ -135,7 +141,7 @@
 			});
 			this.content.on('click', '.item', function() {
 				var data = $(this).data('data');
-				var text = $(this).text();
+				var text = $('span',this).text();
 				if (_this.settings.mutil == true) {
 					_this.mutilTextArr.push(text);
 					_this.mutilValueArr.push(data[_this.valueName]);
@@ -160,6 +166,13 @@
 			})
 			$(document).click(function() {
 				_this.hide();
+			});
+			this.content.on('click', '.ats_del', function() {
+				//删除
+				var item = $(this).closest('.item');
+				_this.settings.delCallback && _this.settings.delCallback.call(_this,item);
+				item.remove();
+				return false;
 			});
 		},
 		createContent: function() {
@@ -223,7 +236,11 @@
 						for (var j = 0, len = this.column.length; j < len; j++) {
 							name += '<span class="' + this.column[j] + '">' + item[this.column[j]] + '</span>';
 						};
-						row = $('<div class="item">' + name + '</div>');
+						if(this.settings.isdel){
+							row = $('<div class="item">' + name + '<i class="ats_del">✖</i></div>');
+						}else{
+							row = $('<div class="item">' + name + '</div>');
+						}
 					}
 					row.data('data', item)
 					this.content.append(row);

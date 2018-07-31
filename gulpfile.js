@@ -16,7 +16,7 @@ var paths = {
     css: 'src/*.css'
 };
 gulp.task('js', function() {
-    return gulp.src(paths.script).pipe(uglify()).pipe(gulp.dest('dist'));
+    return gulp.src(paths.script).pipe(uglify()).pipe(gulp.dest('dist')).pipe(gulp.dest('docs'));
 });
 gulp.task('css', function() {
     return gulp.src(paths.css)
@@ -24,6 +24,7 @@ gulp.task('css', function() {
             compatibility: 'ie8'
         })) //兼容ie
         .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('docs'))
         .pipe(gulp.dest('dest'));
 });
 gulp.task('requirejs', function() {

@@ -19,7 +19,7 @@
 <p>demo地址:<a href="http://www.lovewebgames.com/jsmodule/autosearch.html">http://www.lovewebgames.com/jsmodule/autosearch.html</a> </p>
 	静态数据：<input type="text"  class="autosearch0"><input type="hidden" name="hd_id0" id="hd_id0">
 	<script>
-		 var input = $('.autosearch0');
+		var input = $('.autosearch0');
 		 var autosearch = new AutoSearch();
 		 var data = [{adminid:1,adminname:"javascript"},{adminid:2,adminname:"java"}];
 		 autosearch.init({input:input,autoShow:true,data:data,valueObj:'#hd_id0',filterColumn:['adminname'],column:['adminname'],valueName:"adminid"});
@@ -29,6 +29,61 @@
 		 var autosearch = new AutoSearch();
 		 var data = [{adminid:1,adminname:"javascript"},{adminid:2,adminname:"java"}];
 		 autosearch.init({input:input,autoShow:true,data:data,valueObj:'#hd_id0',filterColumn:['adminname'],column:['adminname'],valueName:"adminid"});
+	</pre>
+	静态数据，回车动态添加项:<input type="text"  class="autosearch1"><input type="hidden" name="hd_id1" id="hd_id1">
+	<script>
+		 var input = $('.autosearch1');
+		 var autosearch = new AutoSearch();
+		 var data = [{key:"javascript"},{key:"java"}];
+		 autosearch.init({
+			 input:input,autoShow:true,autoHide:false,data:data,valueObj:'#hd_id1',
+			 filterColumn:['key'],column:['key'],valueName:"key",isdel:true,
+			 enterCallback:function(input){
+				var value = $(input).val();
+				$(input).attr('data-text',value)
+				var ishas = false;
+				for(var i = data.length-1;i>=0;i --){
+					if(data[i].key==value){
+						ishas = true;
+						break;
+					}
+				}
+				if(!ishas){
+					var obj = {key:value};
+					data.push(obj);
+				}
+				this.settings.callback.call(this, obj);
+			 },callback:function(data){
+				 console.log(data)
+			 },delCallback:function(row){
+				var index = -1;
+				for(var i = data.length-1;i>=0;i --){
+					if(data[i].key==$(row).data("data").key){
+						index = i;
+						break;
+					}
+				}
+				if(index>-1){
+					data.splice(index, 1);
+				}
+			 }
+		});
+	</script>
+	<pre>
+		var input = $('.autosearch1');
+		var autosearch = new AutoSearch();
+		var data = [{key:"javascript"},{key:"java"}];
+		autosearch.init({
+			input:input,autoShow:true,data:data,valueObj:'#hd_id1',
+			filterColumn:['key'],column:['key'],valueName:"key",
+			enterCallback:function(input){
+			   var value = $(input).val();
+			   $(input).attr('data-text',value)
+			   data.push({key:value});
+			},callback:function(){
+
+			}
+	   });
 	</pre>
 	ajax请求:<input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
 	<script>

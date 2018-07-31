@@ -1,0 +1,32 @@
+{
+  "name": "tip",
+  "version": "1.0.4",
+  "description": "tips",
+  "main": "dist/tip.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tianxiangbing/tip.git"
+  },
+  "keywords": [
+    "tip"
+  ],
+  "author": "tianxiangbing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tianxiangbing/tip/issues"
+  },
+  "homepage": "https://github.com/tianxiangbing/tip#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-requirejs": "^1.1.1",
+    "gulp-uglify": "^3.0.1",
+    "gulp-watch": "^5.0.1"
+  }
+}
