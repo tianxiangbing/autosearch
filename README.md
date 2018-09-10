@@ -1,7 +1,8 @@
 # autosearch
 自动搜索
 例子见[自动搜索框例子](http://www.lovewebgames.com/jsmodule/autosearch.html "自动搜索框例子")
-![效果图](example/autosearch.jpg)
+![效果图](docs/autosearch.jpg)
+
 
 # 例1：
     <input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
