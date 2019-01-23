@@ -77,6 +77,8 @@
 						_this.hide();
 						if (input.attr('data-text') != input.val() && !_this.settings.mutil) {
 							_this.input.val('');
+							_this.input.data('old','')
+                            _this.valueObj.val('');
 							_this.settings.resetCallback && _this.settings.resetCallback.call(_this, _this.input);
 						}
 					}, 500)
