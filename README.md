@@ -3,7 +3,8 @@
 例子见[自动搜索框例子](http://www.lovewebgames.com/jsmodule/autosearch.html "自动搜索框例子")
 ![效果图](docs/autosearch.jpg)
 
-
+# npm安装 
+	npm install --save jq-autosearch
 # 例1：
     <input type="text"  class="autosearch"><input type="hidden" name="hd_id" id="hd_id">
 	<script src="../src/jquery-1.11.2.js"></script>

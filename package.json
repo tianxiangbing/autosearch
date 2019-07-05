@@ -1,29 +1,30 @@
 {
-  "name": "tip",
-  "version": "1.0.4",
-  "description": "tips",
-  "main": "dist/tip.js",
+  "name": "jq-autosearch",
+  "version": "1.0.9",
+  "description": "jquery autosearch autocomplete",
+  "main": "dist/autosearch.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"gulp"
+    "build":"gulp",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tianxiangbing/tip.git"
+    "url": "git+https://github.com/tianxiangbing/autosearch.git"
   },
   "keywords": [
-    "tip"
+    "autosearch"
   ],
   "author": "tianxiangbing",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tianxiangbing/tip/issues"
+    "url": "https://github.com/tianxiangbing/autosearch/issues"
   },
-  "homepage": "https://github.com/tianxiangbing/tip#readme",
-  "dependencies": {
+  "homepage": "https://github.com/tianxiangbing/autosearch#readme",
+  "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-minify-css": "^1.2.4",
     "gulp-requirejs": "^1.1.1",
